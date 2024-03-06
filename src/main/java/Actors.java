@@ -5,12 +5,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.HttpURLConnection;
+import java.util.ArrayList;
+
 public class Actors {
     public static final String API_KEY = "efdbDcPXH0/BEAckf5Nc1Q==9aypcnbi5XIVKWk9";   // TODO --> add your api key about Actors here
-    String netWorth;
-    Boolean isAlive;
+    double netWorth;
+    boolean isAlive;
+    String gender;
+    double height;
+    String birthday;
+    int age;
+    String nationality;
 
-    public Actors(String netWorth, boolean isAlive){
+    public Actors(double netWorth, boolean isAlive){
         //TODO --> (Write a proper constructor using the get_from_api functions)
         this.isAlive = isAlive;
         this.netWorth = netWorth;
@@ -51,20 +58,16 @@ public class Actors {
     public double getNetWorthViaApi(String actorsInfoJson){
         //TODO --> (This function must return the "NetWorth")
         String actorsInfo = actorsInfoJson.substring(1,actorsInfoJson.length());
-        JSONObject netWorth = new JSONObject(actorsInfo);
-        double ActorNetWorth = netWorth.getDouble("net_worth");
-        System.out.println("AAAAAAAA");
-        return ActorNetWorth;
+        JSONObject actorNetWorth = new JSONObject(actorsInfo);
+        netWorth = actorNetWorth.getDouble("net_worth");
+        return netWorth;
     }
 
     public boolean isAlive(String actorsInfoJson){
         //TODO --> (If your chosen actor is alive it must return true otherwise it must return false)
         String actorsInfo = actorsInfoJson.substring(1,actorsInfoJson.length());
         JSONObject Alive = new JSONObject(actorsInfo);
-        boolean isAlive = Alive.getBoolean("is_alive");
-//        System.out.println(actorsInfoJson);
-//        System.out.println(isAlive);
-//        System.out.println(Alive);
+        isAlive = Alive.getBoolean("is_alive");
         return isAlive;
     }
 
@@ -81,4 +84,33 @@ public class Actors {
         }
     }
 
+    public String getNationalityViaApi(String moviesInfoJson){
+        JSONObject jsonObject = new JSONObject(moviesInfoJson);
+        nationality = jsonObject.getString("nationality");
+        return nationality;
+    }
+
+    public String getBirthdayViaApi(String moviesInfoJson){
+        JSONObject jsonObject = new JSONObject(moviesInfoJson);
+        birthday = jsonObject.getString("birthday");
+        return birthday;
+    }
+
+    public String getGenderViaAPi(String moviesInfoJson){
+        JSONObject jsonObject = new JSONObject(moviesInfoJson);
+        gender = jsonObject.getString("gender");
+        return gender;
+    }
+
+    public double getHeightViaAPi(String moviesInfoJson){
+        JSONObject jsonObject = new JSONObject(moviesInfoJson);
+        height = jsonObject.getDouble("height");
+        return height;
+    }
+
+    public int getAgeViaAPi(String moviesInfoJson){
+        JSONObject jsonObject = new JSONObject(moviesInfoJson);
+        age = jsonObject.getInt("age");
+        return age;
+    }
 }
