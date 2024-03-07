@@ -38,18 +38,25 @@ public class Movie {
      */
 
     public String getMovieData(String title) throws IOException {
-        URL url = new URL("https://www.omdbapi.com/?t="+title+"&apikey="+API_KEY);
-        URLConnection Url = url.openConnection();
-        Url.setRequestProperty("Authorization", "Key" + API_KEY);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(Url.getInputStream()));
-        String line;
-        StringBuilder stringBuilder = new StringBuilder();
-        while ((line = reader.readLine())!=null) {
-            stringBuilder.append(line);
-        }
-        reader.close();
-        //handle an error if the chosen movie is not found
-        return stringBuilder.toString();
+            URL url = new URL("https://www.omdbapi.com/?t="+title+"&apikey="+API_KEY);
+            URLConnection Url = url.openConnection();
+            Url.setRequestProperty("Authorization", "Key" + API_KEY);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(Url.getInputStream()));
+            String line;
+            StringBuilder stringBuilder = new StringBuilder();
+            while ((line = reader.readLine())!=null) {
+                stringBuilder.append(line);
+            }
+            reader.close();
+            //handle an error if the chosen movie is not found
+            return stringBuilder.toString();
+    }
+
+    public String movieErrorHandling(String moviesInfoJson){
+        JSONObject jsonObject = new JSONObject(moviesInfoJson);
+        String error = jsonObject.getString("Response");
+
+        return error;
     }
     public int getImdbVotesViaApi(String moviesInfoJson){
         //TODO --> (This function must change and return the "ImdbVotes" as an Integer)
