@@ -19,9 +19,9 @@ public class Main {
             Movie movie = new Movie(new ArrayList<>(),"",0);
             String moviesInfoJson = movie.getMovieData(movieName);
 
-            System.out.println("Name: " + movieName);
+            System.out.println("\nName: " + movieName);
             System.out.println("Year: " + movie.getYearViaApi(moviesInfoJson));
-//            System.out.println("Release: " + movie.getReleaseViaApi(moviesInfoJson));
+            System.out.println("Released: " + movie.getReleaseViaApi(moviesInfoJson));
             System.out.println("Genre: " + movie.getGenreViaApi(moviesInfoJson));
             System.out.println("Director: " + movie.getDirectorViaApi(moviesInfoJson));
             System.out.println("Actors: " + movie.getActorListViaApi(moviesInfoJson));
@@ -38,13 +38,13 @@ public class Main {
             String actorsInfoJson = actor.getActorData(actorName);
 
             System.out.println("\nName: " + actorName);
-//            System.out.println("Gender: " + actor.getGenderViaAPi(actorsInfoJson));
-//            System.out.println("Nationality: " + actor.getNationalityViaApi(actorsInfoJson));
-//            System.out.println("Birthday: " + actor.getBirthdayViaApi(actorsInfoJson));
-//            System.out.println("Age: " + actor.getAgeViaAPi(actorsInfoJson));
+            System.out.println("Gender: " + actor.getGenderViaAPi(actorsInfoJson));
+            System.out.println("Nationality: " + actor.getNationalityViaApi(actorsInfoJson));
+            System.out.println("Birthday: " + actor.getBirthdayViaApi(actorsInfoJson));
+            System.out.println("Age: " + actor.getAgeViaAPi(actorsInfoJson));
             System.out.println("is Alive: " + actor.isAlive(actorsInfoJson));
             System.out.println("Date of death: " + actor.getDateOfDeathViaApi(actorsInfoJson));
-//            System.out.println("Height: " + actor.getHeightViaAPi(actorsInfoJson));
+            System.out.println("Height: " + actor.getHeightViaAPi(actorsInfoJson));
             System.out.println("Net worth: " + actor.getNetWorthViaApi(actorsInfoJson));
 
         }

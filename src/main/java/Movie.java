@@ -97,7 +97,7 @@ public class Movie {
 
     public String getReleaseViaApi(String moviesInfoJson){
         JSONObject jsonObject = new JSONObject(moviesInfoJson);
-        release = jsonObject.getString("Release");
+        release = jsonObject.getString("Released");
         return release;
     }
 

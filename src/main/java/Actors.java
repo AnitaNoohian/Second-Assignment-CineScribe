@@ -12,7 +12,7 @@ public class Actors {
     int netWorth;
     boolean isAlive;
     String gender;
-    int height;
+    double height;
     String birthday;
     int age;
     String nationality;
@@ -84,33 +84,38 @@ public class Actors {
         }
     }
 
-    public String getNationalityViaApi(String moviesInfoJson){
-        JSONObject jsonObject = new JSONObject(moviesInfoJson);
+    public String getNationalityViaApi(String actorsInfoJson){
+        String actorsInfo = actorsInfoJson.substring(1,actorsInfoJson.length());
+        JSONObject jsonObject = new JSONObject(actorsInfo);
         nationality = jsonObject.getString("nationality");
         return nationality;
     }
 
-    public String getBirthdayViaApi(String moviesInfoJson){
-        JSONObject jsonObject = new JSONObject(moviesInfoJson);
+    public String getBirthdayViaApi(String actorsInfoJson){
+        String actorsInfo = actorsInfoJson.substring(1,actorsInfoJson.length());
+        JSONObject jsonObject = new JSONObject(actorsInfo);
         birthday = jsonObject.getString("birthday");
         return birthday;
     }
 
-    public String getGenderViaAPi(String moviesInfoJson){
-        JSONObject jsonObject = new JSONObject(moviesInfoJson);
+    public String getGenderViaAPi(String actorsInfoJson){
+        String actorsInfo = actorsInfoJson.substring(1,actorsInfoJson.length());
+        JSONObject jsonObject = new JSONObject(actorsInfo);
         gender = jsonObject.getString("gender");
         return gender;
     }
 
-    public int getHeightViaAPi(String moviesInfoJson){
-        JSONObject jsonObject = new JSONObject(moviesInfoJson);
-        height = Integer.parseInt(jsonObject.getString("height"));
+    public double getHeightViaAPi(String actorsInfoJson){
+        String actorsInfo = actorsInfoJson.substring(1,actorsInfoJson.length());
+        JSONObject jsonObject = new JSONObject(actorsInfo);
+        height = jsonObject.getDouble("height");
         System.out.println(height);
         return height;
     }
 
-    public int getAgeViaAPi(String moviesInfoJson){
-        JSONObject jsonObject = new JSONObject(moviesInfoJson);
+    public int getAgeViaAPi(String actorsInfoJson){
+        String actorsInfo = actorsInfoJson.substring(1,actorsInfoJson.length());
+        JSONObject jsonObject = new JSONObject(actorsInfo);
         age = jsonObject.getInt("age");
         return age;
     }
