@@ -80,7 +80,7 @@ public class Actors {
             return dateofDeath;
         }
         else{
-            return "Not yet";
+            return "-";
         }
     }
 
