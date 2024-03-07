@@ -9,15 +9,15 @@ import java.util.ArrayList;
 
 public class Actors {
     public static final String API_KEY = "efdbDcPXH0/BEAckf5Nc1Q==9aypcnbi5XIVKWk9";   // TODO --> add your api key about Actors here
-    double netWorth;
+    int netWorth;
     boolean isAlive;
     String gender;
-    double height;
+    int height;
     String birthday;
     int age;
     String nationality;
 
-    public Actors(double netWorth, boolean isAlive){
+    public Actors(int netWorth, boolean isAlive){
         //TODO --> (Write a proper constructor using the get_from_api functions)
         this.isAlive = isAlive;
         this.netWorth = netWorth;
@@ -34,7 +34,7 @@ public class Actors {
                     name.replace(" ", "+")+"&apikey="+API_KEY);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("X-Api-Key", API_KEY);
-            System.out.println(connection);
+            //System.out.println(connection);
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String inputLine;
@@ -45,7 +45,7 @@ public class Actors {
                 }
 
                 in.close();
-                System.out.println(response.toString());
+                //System.out.println(response.toString());
                 return response.toString();
             } else {
                 return "Error: " + connection.getResponseCode() + " " + connection.getResponseMessage();
@@ -55,11 +55,11 @@ public class Actors {
             return null;
         }
     }
-    public double getNetWorthViaApi(String actorsInfoJson){
+    public int getNetWorthViaApi(String actorsInfoJson){
         //TODO --> (This function must return the "NetWorth")
         String actorsInfo = actorsInfoJson.substring(1,actorsInfoJson.length());
         JSONObject actorNetWorth = new JSONObject(actorsInfo);
-        netWorth = actorNetWorth.getDouble("net_worth");
+        netWorth = actorNetWorth.getInt("net_worth");
         return netWorth;
     }
 
@@ -102,9 +102,10 @@ public class Actors {
         return gender;
     }
 
-    public double getHeightViaAPi(String moviesInfoJson){
+    public int getHeightViaAPi(String moviesInfoJson){
         JSONObject jsonObject = new JSONObject(moviesInfoJson);
-        height = jsonObject.getDouble("height");
+        height = Integer.parseInt(jsonObject.getString("height"));
+        System.out.println(height);
         return height;
     }
 

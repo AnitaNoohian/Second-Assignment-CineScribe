@@ -12,13 +12,16 @@ import java.util.ArrayList;
 public class Movie {
     public static final String API_KEY = "6be1cbc8";   // TODO --> add your api key about Movie here
     int ImdbVotes;
-    int year;
+    String year;
     String release;
     String director;
     String genre;
     ArrayList<String> actorsList;
     String rating;
 
+    public Movie(){
+
+    }
     public Movie(ArrayList<String> actorsList, String rating, int ImdbVotes){
         //TODO --> (Write a proper constructor using the get_from_api functions)
         this.actorsList = actorsList;
@@ -86,9 +89,9 @@ public class Movie {
         return actorsList;
     }
 
-    public int getYearViaApi(String moviesInfoJson){
+    public String getYearViaApi(String moviesInfoJson){
         JSONObject jsonObject = new JSONObject(moviesInfoJson);
-        year = jsonObject.getInt("Year");
+        year = jsonObject.getString("Year");
         return year;
     }
 
